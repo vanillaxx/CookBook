@@ -20,8 +20,11 @@ from blog import views
 urlpatterns = [
     path('admin/', admin.site.urls, ),
     path("", views.home, name="home"),
-    path("tags", views.tags_list),
-    path("recipes/<int:id>", views.RecipeDisplay.as_view(), name="recipe-display"),
+    path("tags", views.tags_list, name="tags"),
+    path("recipes/<int:pk>", views.RecipeDisplay.as_view(), name="recipe_detail"),
     path("recipes/add", views.RecipeCreate.as_view(), name="recipe-add"),
-    path("recipes/<int:id>/update", views.RecipeUpdate.as_view(), name="recipe-update"),
+    path("recipes/<int:pk>/update", views.RecipeUpdate.as_view(), name="recipe-update"),
+    path("recipes/<int:pk>/delete", views.RecipeDelete.as_view(), name="recipe-delete"),
+    path("tags/add", views.TagCreate.as_view(), name="tag-add"),
+
 ]

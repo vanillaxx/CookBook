@@ -1,15 +1,14 @@
 from django.shortcuts import render
 
 # Create your views here.
-
-from django.http import HttpResponse
-from django.views.generic import UpdateView, CreateView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView, CreateView, DetailView, DeleteView
 
 from .models import Recipe, Tag
 
 
 def home(request):
-    recipes = Recipe.objects.filter(status='PUB').order_by('published_at')
+    recipes = Recipe.objects.order_by('published_at')
     return render(request, 'blog/home.html', {'recipes': recipes})
 
 
@@ -20,13 +19,42 @@ def tags_list(request):
 
 class RecipeUpdate(UpdateView):
     model = Recipe
+    fields = ['recipe_header', 'ingredients', 'description', 'tags', 'difficulty_level']
+    template_name = "blog/recipe_update.html"
 
 
 class RecipeCreate(CreateView):
     model = Recipe
-    fields = ['recipe_header', 'ingredients', 'tags', 'difficulty_level']
+    fields = ['recipe_header', 'ingredients', 'description', 'tags', 'difficulty_level', 'status']
     template_name = "blog/recipe_create.html"
 
 
+class RecipeDelete(DeleteView):
+    model = Recipe
+    fields = ['recipe_header', 'ingredients', 'description', 'tags', 'difficulty_level']
+    template_name = "blog/recipe_delete.html"
+    success_url = reverse_lazy('home')
+
+
+
+
+class TagCreate(CreateView):
+    model = Tag
+    fields = ['name']
+    template_name = "blog/tag_create.html"
+    success_url = '/tags'
+
+
+    # def form_valid(self, form):
+    #     self.object = form.save()
+    #     return HttpResponseRedirect(self.get_success_url())
+    #
+
 class RecipeDisplay(DetailView):
     model = Recipe
+
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     # context['now'] = timezone.now()
+    #     return context
