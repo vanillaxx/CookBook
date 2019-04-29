@@ -18,7 +18,10 @@ from django.urls import path
 from blog import views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, ),
     path("", views.home, name="home"),
     path("tags", views.tags_list),
+    path("recipes/<int:id>", views.RecipeDisplay.as_view(), name="recipe-display"),
+    path("recipes/add", views.RecipeCreate.as_view(), name="recipe-add"),
+    path("recipes/<int:id>/update", views.RecipeUpdate.as_view(), name="recipe-update"),
 ]
