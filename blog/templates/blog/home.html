@@ -1,19 +1,26 @@
-<html>
-    <head>
-        <title>CookBook</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">CookBook</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        <div>
-            {% for recipe in recipes %}
-                 {{ recipe.recipe_header }}
-                 <p> {{ recipe.published_at }}</p>
-            {% endfor %}
-        </div>
+{% load staticfiles %}
 
+{% block title %}Homepage{% endblock %}
 
-    </body>
-</html>
+{% block right %}
+    <div class="page-header" style="text-align: center">
+        {% for recipe in recipes %}
+            <a href= '{% url 'recipe_detail' pk=recipe.id  %}' class="text-center" >{{ recipe.recipe_header }}</a>
+            <a href= '{% url 'recipe_detail' pk=recipe.id  %}'>
+            <img src="{{ recipe.image.url }}" class="img-fluid" alt="No image">
+            </a>
+            <div class="row">
+              <div class="col">
+                <a href= '{% url 'recipe-update' pk=recipe.id %}' class="btn btn-outline-primary btn-lg btn-block" >Update</a>
+              </div>
+              <div class="col">
+                <a href= '{% url 'recipe-delete' pk=recipe.id %}' class="btn btn-outline-primary btn-lg btn-block" >Delete</a>
+              </div>
+            </div>
+
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

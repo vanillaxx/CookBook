@@ -16,6 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from blog import views
+from django.conf import settings
+from django.conf.urls.static import static
+
+from . import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 urlpatterns = [
     path('admin/', admin.site.urls, ),
@@ -26,5 +33,8 @@ urlpatterns = [
     path("recipes/<int:pk>/update", views.RecipeUpdate.as_view(), name="recipe-update"),
     path("recipes/<int:pk>/delete", views.RecipeDelete.as_view(), name="recipe-delete"),
     path("tags/add", views.TagCreate.as_view(), name="tag-add"),
-
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

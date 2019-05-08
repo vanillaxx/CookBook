@@ -3,7 +3,7 @@ from django.db import models
 from django.urls import reverse
 from model_utils import Choices
 from model_utils.fields import StatusField, MonitorField
-
+import datetime
 
 # Create your models here.
 
@@ -13,9 +13,6 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-
-    # def get_absolute_url(self):
-    #     return reverse('tags')
 
 
 class Recipe(models.Model):
@@ -30,15 +27,8 @@ class Recipe(models.Model):
     description = models.TextField()
     tags = models.ManyToManyField(Tag)
     difficulty_level = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, default="EASY")
-    STATUS = (
-        ('DRAFT', "draft"),
-        ('PUB', "published"))
-    status = StatusField()
-    published_at = MonitorField(monitor='status', when=['published'])
-
-    # def publish(self):
-    #     self.status = 'PUB'
-    #     self.save()
+    date = models.DateField(default=datetime.date.today)
+    image = models.ImageField(upload_to='recipes_images', blank=True, null=True)
 
     def __str__(self):
         return self.recipe_header
@@ -47,4 +37,4 @@ class Recipe(models.Model):
         return reverse('recipe_detail', kwargs={"pk": self.pk})
 
     class Meta:
-        ordering = ["-published_at"]
+        ordering = ["-date"]
