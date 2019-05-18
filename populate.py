@@ -22,6 +22,7 @@ def populate():
     add_tag('kokos')
     add_tag('banany')
     add_tag('liczi')
+    add_tag('cynamon')
 
 
 def add_tag(name):

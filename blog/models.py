@@ -28,7 +28,7 @@ class Recipe(models.Model):
     tags = models.ManyToManyField(Tag)
     difficulty_level = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, default="EASY")
     date = models.DateField(default=datetime.date.today)
-    image = models.ImageField(upload_to='recipes_images', blank=True, null=True)
+    image = models.ImageField(upload_to='recipes_images',  blank=True, null=True)
 
     def __str__(self):
         return self.recipe_header
