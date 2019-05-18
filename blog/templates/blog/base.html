@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CookBook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<div class="jumbotron  bg-dark text-white text-center">
+  <h1>CookBook</h1>
+    {% block title %}
+    {% endblock %}
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3 class="text-center">Menu</h3>
+        <a href= '{% url 'home' %}' class="btn btn-primary btn-lg btn-block btn-huge" >Homepage</a>
+        <hr>
+        <div>
+        <a href= '{% url 'recipe-add' %}' class="btn btn-primary btn-lg btn-block btn-huge" >Add recipe</a>
+        <hr>
+        <a href= '{% url 'tag-add' %}' class="btn btn-primary btn-lg btn-block btn-huge" >Add tag</a>
+        </div>
+        {% block left %}
+        {%  endblock %}
+    </div>
+    <div class="col-sm-6">
+      <h3 class="text-center">{% block right_title %}{% endblock %}</h3>
+        {% block right %}
+        {%  endblock %}
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
