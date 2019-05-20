@@ -1,6 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Delete recipe
+{% endblock %}
+
 {%  block right %}
 <form method=POST>{% csrf_token %}
     <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm">
+
+    <button type="submit" class="btn btn-primary">Yes, I am sure!</button>
+
 </form>
 {%  endblock %}

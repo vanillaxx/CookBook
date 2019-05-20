@@ -1,4 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Update recipe
+{% endblock %}
+
+{% block right %}
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Update">
+    <button type="submit" class="btn btn-primary">Update recipe</button>
 </form>
+{% endblock %}
