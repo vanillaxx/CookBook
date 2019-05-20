@@ -4,22 +4,34 @@
 
 {% block title %}Homepage{% endblock %}
 
+{% block left %}
+    <hr>
+    <h5>
+        {% for tag in tags %}
+            <a href='{% url 'tag' pk=tag.id  %}' class="badge badge-pill badge-secondary">
+                {{ tag }}</a>
+        {% endfor %}
+    </h5>
+    <hr>
+{% endblock %}
+
 {% block right %}
     <div class="page-header" style="text-align: center">
         {% for recipe in recipes %}
-            <a href= '{% url 'recipe_detail' pk=recipe.id  %}' class="text-center" >{{ recipe.recipe_header }}</a>
+            <div class="home-header">
+                <h3 class="text-center"><a href= '{% url 'recipe_detail' pk=recipe.id  %}' >{{ recipe.recipe_header }}</a></h3>
+            </div>
             <a href= '{% url 'recipe_detail' pk=recipe.id  %}'>
             <img src="{{ recipe.image.url }}" class="img-fluid" alt="No image">
             </a>
-            <div class="row">
+            <div class="row mt-sm-1">
               <div class="col">
-                <a href= '{% url 'recipe-update' pk=recipe.id %}' class="btn btn-outline-primary btn-lg btn-block" >Update</a>
+                <a href= '{% url 'recipe-update' pk=recipe.id %}' class="btn btn-outline-info btn-lg btn-block" >Update</a>
               </div>
               <div class="col">
-                <a href= '{% url 'recipe-delete' pk=recipe.id %}' class="btn btn-outline-primary btn-lg btn-block" >Delete</a>
+                <a href= '{% url 'recipe-delete' pk=recipe.id %}' class="btn btn-outline-info btn-lg btn-block" >Delete</a>
               </div>
             </div>
-
             <hr>
         {% endfor %}
     </div>

@@ -1,23 +1,20 @@
+{%  extends 'blog/base.html' %}
 {% load static %}
-<html>
-    <head>
-        <title>Tagi</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">CookBook</a></h1>
-        </div>
 
-        <div>
-            <h1><a href="/">Tagi</a></h1>
-        </div>
+{% block title %}
+    Tags
+{% endblock %}
 
-        <div>
-            {% for tag in tags %}
-                 {{ tag }}
-            {% endfor %}
-        </div>
+{% block right %}
+    <h3>
+        {% for tag in tags %}
+            <a href='{% url 'tag' pk=tag.id  %}' class="badge badge-pill badge-secondary">
+                {{ tag }}
+            </a>
+            <a href='{% url 'tag-delete' pk=tag.id  %}' data-toggle="tooltip" title="Delete tag">
+                <i class="fas fa-times text-danger fa-sm"></i></a>
+            <br>
+        {% endfor %}
+    </h3>
+{% endblock %}
 
-
-    </body>
-</html>

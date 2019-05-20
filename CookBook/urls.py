@@ -33,8 +33,9 @@ urlpatterns = [
     path("recipes/<int:pk>/update", views.RecipeUpdate.as_view(), name="recipe-update"),
     path("recipes/<int:pk>/delete", views.RecipeDelete.as_view(), name="recipe-delete"),
     path("tags/add", views.TagCreate.as_view(), name="tag-add"),
+    path("tags/<int:pk>/delete", views.TagDelete.as_view(), name="tag-delete"),
+    path("tags/<int:pk>", views.tag, name="tag")
 ]
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

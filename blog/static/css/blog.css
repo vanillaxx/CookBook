@@ -1,9 +1,41 @@
 
 .jumbotron {
-    background-color:transparent !important;
+    background-color: gray() !important;
+    font-size: 22pt;
+    /*font-family: 'Dancing Script', cursive;*/
+}
+
+.page-header h1, .page-header h1 a:link, .page-header h1 a:visited {
+    color: whitesmoke;
+    font-size: 50pt;
+    text-decoration: none;
 }
 
 .btn-huge{
     padding-top:20px;
     padding-bottom:20px;
 }
+
+img.resize{
+    width: 100%;
+}
+
+.home-header a, .home-header a:visited{
+    color: black;
+    text-decoration: none;
+}
+
+/*.recipe-name{*/
+/*    font-family: 'Dancing Script', cursive;*/
+/*}*/
+
+p {
+    text-align: justify;
+}
+
+.dropdown .dropdown-menu .dropdown-item:active, .dropdown .dropdown-menu .dropdown-item:hover {
+    background-color: #2bafca;
+}
+
+
+

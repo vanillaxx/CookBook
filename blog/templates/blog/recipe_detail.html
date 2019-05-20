@@ -1,6 +1,71 @@
-<h1>{{ object.recipe_header }}</h1>
-<p>{{ object.ingredients_header }}</p>
-<p>{{ object.ingredients }}</p>
-<p>{{ object.description }}</p>
-<p>Published: {{ object.date}}</p>
-<img src="{{ object.image.url }}">
+{%  extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}
+    Recipe
+{% endblock %}
+
+{% block left %}
+    <br><hr>
+    <h5 class="text-center text-info text-bold">Tags: </h5>
+    <h5>
+        {% for tag in object.tags.all %}
+           <a href='{% url 'tag' pk=tag.id  %}' class="badge badge-pill badge-secondary">{{ tag }}</a>
+        {% endfor %}
+    </h5>
+{% endblock %}
+
+{%  block right %}
+        <div class="recipe-name"><h2 class="text-center">{{ object.recipe_header }}</h2></div>
+        <div class="dropdown text-right">
+          <button class="btn btn-info mb-sm-1" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-cogs"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href= '{% url 'recipe-update' pk=recipe.id %}'>Update</a>
+              <a class="dropdown-item" href= '{% url 'recipe-delete' pk=recipe.id %}'>Delete</a>
+          </div>
+        </div>
+        <img class="resize" src="{{ object.image.url }}" alt="No image">
+        <br><br>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="card border-dark">
+                    <div class="card-body">
+                        <h5 class="card-title text-info text-center">{{ object.ingredients_header }}</h5>
+                        <hr>
+                        <p class="card-text">
+                            <ul class="fa-ul">{% for ingredient in object.get_ingredients %}
+                        <li><span class="fa-li"><i class="far fa-square fa-xs text-info"></i></span>{{ ingredient }}</li>
+                                {% endfor %}</ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm text-center align-self-start">
+                {% if object.difficulty_level == 'EASY' %}
+                    <button type="button" class="btn btn-outline-success btn-block btn-lg" disabled>
+                    <i class="fas fa-star fa-xs"></i>{{ object.get_difficulty_level_display }} </button>
+                {% endif %}
+                {% if object.difficulty_level == 'MEDIUM' %}
+                    <button type="button" class="btn btn-outline-warning btn-block btn-lg" disabled>
+                    <i class="fas fa-star fa-xs"></i>
+                    <i class="fas fa-star fa-xs"></i>
+                        {{ object.get_difficulty_level_display }} </button>
+                {% endif %}
+                {% if object.difficulty_level == 'HARD' %}
+                    <button type="button" class="btn btn-outline-danger btn-block btn-lg" disabled>
+                    <i class="fas fa-star fa-xs"></i>
+                    <i class="fas fa-star fa-xs"></i>
+                    <i class="fas fa-star fa-xs"></i>
+                        {{ object.get_difficulty_level_display }} </button>
+                {% endif %}
+                <button type="button" class="btn btn-outline-info btn-block btn-lg mt-sm-3" disabled>
+                    <i class="far fa-clock fa-md"></i>
+                        {{ object.preparation_time }} </button>
+            </div>
+        </div>
+        <br>
+        <p>{{ object.description }}</p>
+        <p>Published: {{ object.date}}</p>
+{% endblock %}

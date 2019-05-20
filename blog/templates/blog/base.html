@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,37 +6,46 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="blog.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 </head>
 <body>
 
-<div class="jumbotron  bg-dark text-white text-center">
-  <h1>CookBook</h1>
+<div class="jumbotron jumbotron-fluid bg-dark text-white text-center">
+    <div class="container">
+        <div class="page-header">
+        <h1><a href='{% url 'home' %}'>CookBook</a></h1>
+        </div>
     {% block title %}
     {% endblock %}
+    </div>
 </div>
+
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-4">
-      <h3 class="text-center">Menu</h3>
-        <a href= '{% url 'home' %}' class="btn btn-primary btn-lg btn-block btn-huge" >Homepage</a>
-        <hr>
+    <div class="col-sm-3">
+{#      <h3 class="text-center">Menu</h3>#}
+        <a href= '{% url 'home' %}' class="btn btn-info btn-lg btn-block btn-huge" >Homepage</a>
+        <br>
         <div>
-        <a href= '{% url 'recipe-add' %}' class="btn btn-primary btn-lg btn-block btn-huge" >Add recipe</a>
-        <hr>
-        <a href= '{% url 'tag-add' %}' class="btn btn-primary btn-lg btn-block btn-huge" >Add tag</a>
+        <a href= '{% url 'recipe-add' %}' class="btn btn-info btn-lg btn-block btn-huge" >Add recipe</a>
+        <br>
+        <a href= '{% url 'tags' %}' class="btn btn-info btn-lg btn-block btn-huge" >Tags</a>
+        <br>
+        <a href= '{% url 'tag-add' %}' class="btn btn-info btn-lg btn-block btn-huge" >Add tag</a>
         </div>
         {% block left %}
         {%  endblock %}
     </div>
-    <div class="col-sm-6">
-      <h3 class="text-center">{% block right_title %}{% endblock %}</h3>
+    <div class="col-sm-7">
         {% block right %}
         {%  endblock %}
     </div>
   </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </body>
 </html>
