@@ -19,9 +19,11 @@
             <div class="home-header">
                 <h3 class="text-center"><a href= '{% url 'recipe_detail' pk=recipe.id  %}' >{{ recipe.recipe_header }}</a></h3>
             </div>
-            <a href= '{% url 'recipe_detail' pk=recipe.id  %}'>
-            <img src="{{ recipe.image.url }}" class="img-fluid" alt="No image">
-            </a>
+            {% if recipe.image %}
+                <a href= '{% url 'recipe_detail' pk=recipe.id  %}'>
+                    <img src="{{ recipe.image.url }}" class="img-fluid" alt="No image">
+                </a>
+            {% endif %}
             <div class="row mt-sm-1">
               <div class="col">
                 <a href= '{% url 'recipe-update' pk=recipe.id %}' class="btn btn-outline-info btn-lg btn-block" >Update</a>

@@ -3,7 +3,7 @@ from django.db import models
 from django.urls import reverse
 from model_utils import Choices
 from model_utils.fields import StatusField, MonitorField
-import datetime
+from datetime import datetime
 
 # Create your models here.
 
@@ -30,8 +30,8 @@ class Recipe(models.Model):
     description = models.TextField()
     tags = models.ManyToManyField(Tag)
     difficulty_level = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, default="EASY")
-    preparation_time = models.CharField(max_length=10)
-    date = models.DateTimeField(auto_now_add=True)
+    preparation_time = models.CharField(max_length=10, default="0 min")
+    date = models.DateTimeField(default=datetime.now)
     image = models.ImageField(upload_to='recipes_images', blank=True, null=True)
 
     def __str__(self):
