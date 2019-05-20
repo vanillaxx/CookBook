@@ -1,0 +1,17 @@
+{%  extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}
+    Delete tag
+{% endblock %}
+
+{%  block right %}
+<form method=POST>{% csrf_token %}
+    <div class="card border-info border-bold">
+        <div class="card-body">
+            <h5 class="card-title">Are you sure you want to delete "{{ object }}"?</h5>
+            <div class="text-right"><input type="submit" value="Confirm" class="btn btn-lg btn-info"></div>
+        </div>
+    </div>
+</form>
+{%  endblock %}
