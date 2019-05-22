@@ -26,6 +26,18 @@ def tag(request, pk):
     return render(request, 'blog/home.html', {'recipes': recipes, 'tags': tags})
 
 
+def difficulty_lvl(request, lvl):
+    if lvl == 1:
+        level = "EASY"
+    elif lvl == 2:
+        level = "MEDIUM"
+    else:
+        level = "HARD"
+    recipes = Recipe.objects.filter(difficulty_level=level)
+    tags = Tag.objects.all()
+    return render(request, 'blog/home.html', {'recipes': recipes, 'tags': tags})
+
+
 class RecipeUpdate(UpdateView):
     model = Recipe
     fields = ['recipe_header', 'ingredients', 'description', 'tags',

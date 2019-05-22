@@ -7,7 +7,12 @@
 
 {% block right %}
 <form method=POST>{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
+    <div class="card border-info border-bold">
+        <div class="card-body">
+            {{ form.as_p }}
+            <div class="text-right"><input type="submit" value="Save" class="btn btn-lg btn-info"></div>
+        </div>
+    </div>
 </form>
 {%  endblock %}
+

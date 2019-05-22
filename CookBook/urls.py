@@ -34,7 +34,8 @@ urlpatterns = [
     path("recipes/<int:pk>/delete", views.RecipeDelete.as_view(), name="recipe-delete"),
     path("tags/add", views.TagCreate.as_view(), name="tag-add"),
     path("tags/<int:pk>/delete", views.TagDelete.as_view(), name="tag-delete"),
-    path("tags/<int:pk>", views.tag, name="tag")
+    path("tags/<int:pk>", views.tag, name="tag"),
+    path("recipes/difficulty/<int:lvl>", views.difficulty_lvl, name="difficulty-level")
 ]
 
 urlpatterns += staticfiles_urlpatterns()
