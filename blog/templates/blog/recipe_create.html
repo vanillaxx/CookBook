@@ -1,26 +1,14 @@
 {% extends 'blog/base.html' %}
+{% load bootstrap %}
 
 {% block title %}
     Add new recipe
 {% endblock %}
 
 {% block right %}
-<form method="post" enctype="multipart/form-data">{% csrf_token %}
-  {% for hidden_field in form.hidden_fields %}
-    {{ hidden_field }}
-  {% endfor %}
-
-  {% for field in form.visible_fields %}
-    <div class="form-group">
-      {{ field.label_tag }}
-      {{ field }}
-      {% if field.help_text %}
-        <small class="form-text text-muted">{{ field.help_text }}</small>
-      {% endif %}
-    </div>
-  {% endfor %}
-
-  <button type="submit" class="btn btn-info">Save in cookbook</button>
-
-</form>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form|bootstrap }}
+        <div class="text-right"><button type="submit" class="btn btn-info btn-lg">Save in cookbook</button></div>
+    </form>
 {%  endblock %}
+

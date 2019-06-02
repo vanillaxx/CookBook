@@ -13,12 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-from blog import views
-from django.conf import settings
-from django.conf.urls.static import static
 
+from django.contrib import admin
+from django.urls import path, re_path
+from blog import views
 from . import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -35,7 +33,7 @@ urlpatterns = [
     path("tags/add", views.TagCreate.as_view(), name="tag-add"),
     path("tags/<int:pk>/delete", views.TagDelete.as_view(), name="tag-delete"),
     path("tags/<int:pk>", views.tag, name="tag"),
-    path("recipes/difficulty/<int:lvl>", views.difficulty_lvl, name="difficulty-level")
+    re_path(r"^recipes/level/(?P<level>EASY|MEDIUM|HARD)/", views.difficulty_lvl, name="difficulty-level")
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -1,13 +1,9 @@
-from collectionfield.models import CollectionField
 from django.db import models
 from django.urls import reverse
-from model_utils import Choices
-from model_utils.fields import StatusField, MonitorField
 from datetime import datetime
 
+
 # Create your models here.
-
-
 class Tag(models.Model):
     name = models.CharField(max_length=100)
 

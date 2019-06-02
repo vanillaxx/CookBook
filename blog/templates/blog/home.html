@@ -5,9 +5,9 @@
 {% block left %}
     <hr>
     <h3>
-        <a href='{% url 'difficulty-level' lvl=1  %}' class="badge badge-success ml-sm-2">easy</a>
-        <a href='{% url 'difficulty-level' lvl=2 %}' class="badge badge-warning text-white">medium</a>
-        <a href='{% url 'difficulty-level' lvl=3 %}' class="badge badge-danger">hard</a>
+        <a href='{% url 'difficulty-level' level='EASY' %}' class="badge badge-success ml-sm-2">easy</a>
+        <a href='{% url 'difficulty-level' level='MEDIUM' %}' class="badge badge-warning text-white">medium</a>
+        <a href='{% url 'difficulty-level' level='HARD' %}' class="badge badge-danger">hard</a>
     </h3>
     <hr>
     <h5>

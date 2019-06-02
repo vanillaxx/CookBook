@@ -1,13 +1,15 @@
 {%  extends 'blog/base.html' %}
-{% load static %}
+{% load bootstrap %}
 
 {% block title %}
     Update recipe
 {% endblock %}
 
 {% block right %}
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update" class="btn btn-lg btn-info"
-</form>
+    <form method="post">{% csrf_token %}
+        {{ form|bootstrap }}
+        <div class="text-right"><input type="submit" value="Update recipe" class="btn btn-lg btn-info"></div>
+    </form>
 {% endblock %}
+
+

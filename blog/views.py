@@ -1,14 +1,10 @@
 from django.shortcuts import render
-from django.shortcuts import redirect
-import datetime
-
-# Create your views here.
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView, DetailView, DeleteView
-
 from .models import Recipe, Tag
 
 
+# Create your views here.
 def home(request):
     recipes = Recipe.objects.all()
     tags = Tag.objects.all()
@@ -26,13 +22,7 @@ def tag(request, pk):
     return render(request, 'blog/home.html', {'recipes': recipes, 'tags': tags})
 
 
-def difficulty_lvl(request, lvl):
-    if lvl == 1:
-        level = "EASY"
-    elif lvl == 2:
-        level = "MEDIUM"
-    else:
-        level = "HARD"
+def difficulty_lvl(request, level):
     recipes = Recipe.objects.filter(difficulty_level=level)
     tags = Tag.objects.all()
     return render(request, 'blog/home.html', {'recipes': recipes, 'tags': tags})
@@ -65,11 +55,6 @@ class TagCreate(CreateView):
     fields = ['name']
     template_name = "blog/tag_create.html"
     success_url = '/tags'
-
-    # def form_valid(self, form):
-    #     self.object = form.save()
-    #     return HttpResponseRedirect(self.get_success_url())
-    #
 
 
 class TagDelete(DeleteView):
