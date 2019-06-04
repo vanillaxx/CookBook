@@ -20,21 +20,28 @@ from blog import views
 from . import settings
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
-
 urlpatterns = [
     path('admin/', admin.site.urls, ),
     path("", views.home, name="home"),
     path("tags", views.tags_list, name="tags"),
-    path("recipes/<int:pk>", views.RecipeDisplay.as_view(), name="recipe_detail"),
+    path("recipes/<int:pk>",
+         views.RecipeDisplay.as_view(),
+         name="recipe_detail"),
     path("recipes/add", views.RecipeCreate.as_view(), name="recipe-add"),
-    path("recipes/<int:pk>/update", views.RecipeUpdate.as_view(), name="recipe-update"),
-    path("recipes/<int:pk>/delete", views.RecipeDelete.as_view(), name="recipe-delete"),
+    path("recipes/<int:pk>/update",
+         views.RecipeUpdate.as_view(),
+         name="recipe-update"),
+    path("recipes/<int:pk>/delete",
+         views.RecipeDelete.as_view(),
+         name="recipe-delete"),
     path("tags/add", views.TagCreate.as_view(), name="tag-add"),
     path("tags/<int:pk>/delete", views.TagDelete.as_view(), name="tag-delete"),
     path("tags/<int:pk>", views.tag, name="tag"),
-    re_path(r"^recipes/level/(?P<level>EASY|MEDIUM|HARD)/", views.difficulty_lvl, name="difficulty-level")
+    re_path(r"^recipes/level/(?P<level>EASY|MEDIUM|HARD)/",
+            views.difficulty_lvl,
+            name="difficulty-level")
 ]
 
+# umozliwienie wyswietlania obrazow
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

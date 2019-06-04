@@ -1,6 +1,7 @@
 import os
 import django
 
+
 def populate():
     add_tag('agrest')
     add_tag('truskawki')

@@ -21,14 +21,19 @@ class Recipe(models.Model):
         ("HARD", "hard")
     )
     recipe_header = models.CharField(max_length=255)
-    ingredients_header = models.CharField(max_length=50, default="Ingredients:")
+    ingredients_header = models.CharField(max_length=50,
+                                          default="Ingredients:")
     ingredients = models.TextField(default="")
     description = models.TextField()
     tags = models.ManyToManyField(Tag)
-    difficulty_level = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES, default="EASY")
+    difficulty_level = models.CharField(max_length=10,
+                                        choices=DIFFICULTY_CHOICES,
+                                        default="EASY")
     preparation_time = models.CharField(max_length=10, default="0 min")
     date = models.DateTimeField(default=datetime.now)
-    image = models.ImageField(upload_to='recipes_images', blank=True, null=True)
+    image = models.ImageField(upload_to='recipes_images',
+                              blank=True,
+                              null=True)
 
     def __str__(self):
         return self.recipe_header
